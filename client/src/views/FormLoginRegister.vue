@@ -1,5 +1,7 @@
 <template>
-  <button v-google-signin-button="clientId" class="google-signin-button">Continue with Google</button>
+  <div id="form-auth">
+    <button v-google-signin-button="clientId" class="google-signin-button">Continue with Google</button>
+  </div>
 </template>
 
 <script>
@@ -25,6 +27,13 @@ export default {
 </script>
 
 <style>
+#form-auth {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .google-signin-button {
   color: white;
   background-color: royalblue;
@@ -32,12 +41,14 @@ export default {
   font-size: 16px;
   width: 200px;
   border-radius: 50px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
 }
 .google-signin-button:hover {
   background-color: rgb(60, 98, 212);
 }
 .google-signin-button:active {
   background-color: rgb(53, 90, 201);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 
+  0 2px 10px 0 rgba(0, 0, 0, 0.19);
 }
 </style>

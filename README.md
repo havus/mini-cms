@@ -1,4 +1,4 @@
-# mini-wp
+# mini-CMS
 
 Weekend project
 

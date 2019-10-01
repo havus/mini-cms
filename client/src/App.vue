@@ -36,7 +36,7 @@ export default {
       isLogin: false,
       token: '',
       appName: "My App",
-      baseUrl: 'http://localhost:3000',
+      baseUrl: 'http://34.87.112.66',
     }
   },
   created() {

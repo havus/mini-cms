@@ -27,5 +27,5 @@ const errorHandler = require('./middleware/errorHandler');
 app.use(errorHandler);
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log(`Server >>>>>> 3000!`)
+  console.log(`Server >>>>>> ${process.env.PORT || 3000}!`)
 });

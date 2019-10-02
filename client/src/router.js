@@ -10,14 +10,17 @@ export default new Router({
   routes: [
     {
       path: '/dashboard',
+      name: 'Dashboard',
       component: Dashboard
     },
     {
       path: '/write',
+      name: 'Write',
       component: Write
     },
     {
       path: '/edit/:id',
+      name: 'Edit',
       component: Write
     },
   ]

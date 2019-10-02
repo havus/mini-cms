@@ -5,7 +5,8 @@
       solo clearable
     ></v-text-field>
     
-    <froala :tag="'textarea'" :config="config" v-model="field.content"></froala>
+    <!-- <froala :tag="'textarea'" :config="config" v-model="field.content"></froala> -->
+    <tinymce api-key="6fao06w13159b7uummotswmqwlrofkqt6u7hd4jgfpsi7hle" :init="{plugins: 'wordcount'}" v-model="field.content"></tinymce>
 
     <v-img v-if="this.existImage" :src="existImage" :height="(sizeImg * 3)" :width="(sizeImg * 4)" class="ma-4"></v-img>
 
@@ -14,7 +15,7 @@
     <v-btn @click="myAction" color="success" large :disabled="disableBtn">
       {{ $route.path.substr(0, 5) === '/edit' ? 'Edit' : 'Publish' }}
     </v-btn>
-    <v-btn @click="deleteOne($route.params.id)" color="error" class="mx-5" large>
+    <v-btn v-if="$route.path.substr(0, 5) === '/edit'" @click="deleteOne($route.params.id)" color="error" class="mx-5" large>
       <v-icon>delete</v-icon>
     </v-btn>
 
@@ -29,9 +30,13 @@
 
 <script>
 import axios from 'axios';
+import { default as Editor } from '@tinymce/tinymce-vue';
 
 export default {
   props: ['baseUrl'],
+  components: {
+    'tinymce': Editor
+  },
   data() {
     return {
       page: '',
@@ -70,12 +75,12 @@ export default {
       .then(() => {
         this.disableBtn = false;
         this.loading = false;
-        this.$router.push('dashboard');
         this.field = {
           title: '',
           content: '',
           featured_image: '',
         };
+        this.$router.push('/dashboard');
       })
       .catch(() => {
         // console.log(response.data);
@@ -152,6 +157,7 @@ export default {
       })
     },
     deleteOne(id) {
+      this.loading = true;
       axios({
         method: "DELETE",
         url: `${this.baseUrl}/post/${id}`,
@@ -162,12 +168,12 @@ export default {
       .then(() => {
         this.disableBtn = false;
         this.loading = false;
-        this.$router.push('/dashboard');
         this.field = {
           title: '',
           content: '',
           featured_image: '',
         };
+        this.$router.push('/dashboard');
       })
       .catch(() => {
         // console.log(err);
